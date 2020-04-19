@@ -25,7 +25,7 @@ def get():
     qr.make()
     img_io = BytesIO()
     qr_img = qr.make_image(fill_color="black")
-    qr_img = qr_img.convert("RGBA")
+    qr_img = qr_img.convert("RGB")
 
     width, height = qr_img.size
 
@@ -37,9 +37,12 @@ def get():
 
     logo_img = logo_img.resize((xmax - xmin, ymax - ymin))
 
-    #qr_img.paste(logo_img, (xmin, ymin, xmax, ymax))
+    qr_img.paste(logo_img, (xmin, ymin, xmax, ymax))
 
-    qr_img.save(img_io, 'PNG')
+    qr_img = qr_img.convert(mode='P', palette=Image.ADAPTIVE)
+    qr_img = qr_img.quantize(method=2)
+
+    qr_img.save(img_io, 'PNG', optimize=True)
     img_io.seek(0)
     return send_file(img_io, mimetype='image/png')
 
