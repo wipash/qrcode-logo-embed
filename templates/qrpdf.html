@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Holmes Sign-in - {{title}}</title>
+    <style>
+        #qrimage {
+            width: 500px;
+            height: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .qr-container {
+            text-align: center;
+        }
+
+        .title-container {
+            padding-bottom: 1em;
+        }
+
+        .text-container {
+            text-align: center;
+            padding-bottom: 5em;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title-container">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="text-container">
+        <p class="text">{{ text }}</p>
+    </div>
+    <div class="qr-container">
+        <img src="/qrcode?data={{ qr_data }}" width="500" height="500" id="qrimage" />
+    </div>
+</body>
+
+</html>
